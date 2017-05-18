@@ -1,0 +1,33 @@
+<div class="table-responsive">
+    <p class="pull-right" title="Add" ui-sref="app.product.add">
+        <button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus"></span></button>
+    </p>
+    <table class="table table-bordred table-striped">
+        <thead>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="product in vm.products">
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            <td>
+                <p title="Edit">
+                    <a class="btn btn-primary btn-xs" ui-sref="app.product.edit({id:product.id})">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                </p>
+            </td>
+            <td>
+                <p title="Delete">
+                    <button class="btn btn-danger btn-xs" ng-click="vm.deleteproduct(product);">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

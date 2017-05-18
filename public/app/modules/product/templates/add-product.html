@@ -1,0 +1,19 @@
+<form novalidate ng-submit="vm.addproduct(invoiceForm)" name="invoiceForm">
+    <div class="form-group">
+        <label for="name">Product Name</label>
+        <input class="form-control " type="text" ng-model="vm.product.name" placeholder="Name" required name="name">
+        <span style="color:red" ng-show="invoiceForm.name.$touched || (invoiceForm.name.$dirty && invoiceForm.name.$invalid)">
+            <span ng-show="invoiceForm.name.$error.required">Product name is required.</span>
+        </span>
+    </div>
+
+    <div class="form-group">
+        <label for="price">Price</label>
+        <input class="form-control " type="number" ng-model="vm.product.price" placeholder="Price" required name="price">
+        <span style="color:red" ng-show="invoiceForm.price.$touched || (invoiceForm.price.$dirty && invoiceForm.price.$invalid)">
+            <span ng-show="invoiceForm.price.$error.required">Price is required.</span>
+        </span>
+    </div>
+
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>

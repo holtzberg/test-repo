@@ -1,0 +1,57 @@
+<form novalidate ng-submit="vm.addinvoice(invoiceForm)" name="invoiceForm">
+    <div class="form-group">
+        <label for="name">Customer:</label>
+        <select class="form-control " type="text" ng-model="vm.invoice.customer_id" placeholder="Name" name="customer"
+                ng-options="customer.id as customer.name for customer in vm.customers" required>
+            <option value="" selected>--Select Accessory Type--</option>
+        </select>
+        <span style="color:red" ng-show="!vm.invoice.customer && invoiceForm.$submitted">
+            Please select customer.
+        </span>
+    </div>
+    <div class="container" style="max-height:200px;overflow-y: auto;">
+        <ul class="list-unstyled">
+            <li ng-repeat="product in vm.products" class="col-xs-4">
+                <label>
+                    <input type="checkbox" name="casual_dating" ng-model="product.isSelected"
+                           ng-change="vm.selectProduct(product)">
+                    {{product.name}}
+                </label>
+            </li>
+        </ul>
+    </div>
+    <table class="table table-bordred table-striped">
+        <thead>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="invoiceItem in vm.invoiceItems">
+                <td>{{invoiceItem.name}}</td>
+                <td>{{invoiceItem.price}}</td>
+                <td><input name="{{invoiceItem.id+'quantity'}}" ng-model="invoiceItem.quantity" type="number"></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <div class="form-group">
+        <label for="address">Discount</label>
+        <input class="form-control " type="text" ng-model="vm.invoice.discount" placeholder="Discount" required
+               name="discount">
+        <span style="color:red"
+              ng-show="invoiceForm.discount.$touched || (invoiceForm.discount.$dirty && invoiceForm.discount.$invalid)">
+            <span ng-show="invoiceForm.discount.$error.required">Discount is required.</span>
+        </span>
+    </div>
+    <div class="form-group">
+        <label for="phone">Total</label>
+        <span></span>
+        <span style="color:red"
+              ng-show="invoiceForm.phone.$touched || (invoiceForm.phone.$dirty && invoiceForm.phone.$invalid)">
+            <span ng-show="invoiceForm.phone.$error.required">Total is required.</span>
+        </span>
+    </div>
+
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>

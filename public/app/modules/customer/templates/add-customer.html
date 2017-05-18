@@ -1,0 +1,25 @@
+<form novalidate ng-submit="vm.addCustomer(invoiceForm)" name="invoiceForm">
+    <div class="form-group">
+        <label for="name">Customer Name</label>
+        <input class="form-control " type="text" ng-model="vm.customer.name" placeholder="Name" required name="name">
+        <span style="color:red" ng-show="invoiceForm.name.$touched || (invoiceForm.name.$dirty && invoiceForm.name.$invalid)">
+            <span ng-show="invoiceForm.name.$error.required">Customer name is required.</span>
+        </span>
+    </div>
+    <div class="form-group">
+        <label for="address">Address</label>
+        <textarea rows="2" class="form-control" ng-model="vm.customer.address" placeholder="Address" required name="address"></textarea>
+        <span style="color:red" ng-show="invoiceForm.address.$touched || (invoiceForm.address.$dirty && invoiceForm.address.$invalid)">
+            <span ng-show="invoiceForm.address.$error.required">Address is required.</span>
+        </span>
+    </div>
+    <div class="form-group">
+        <label for="phone">Phone</label>
+        <input class="form-control " type="text" ng-model="vm.customer.phone" placeholder="Phone" required name="phone">
+        <span style="color:red" ng-show="invoiceForm.phone.$touched || (invoiceForm.phone.$dirty && invoiceForm.phone.$invalid)">
+            <span ng-show="invoiceForm.phone.$error.required">phone number is required.</span>
+        </span>
+    </div>
+
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
