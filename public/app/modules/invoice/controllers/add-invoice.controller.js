@@ -19,6 +19,7 @@
         vm.products = angular.copy(products);
         vm.addinvoice = addinvoice;
         vm.selectProduct = selectProduct;
+        vm.setTotal = setTotal;
         vm.invoiceItems = [];
 
         /**
@@ -26,7 +27,6 @@
          * @description function to select the product
          */
         function selectProduct(product){
-            vm.invoiceItems = [];
             vm.invoice.total = 0;
             if(product.isSelected){
                 if(product.isSelected){
@@ -37,13 +37,19 @@
                         price:product.price
                     };
                     vm.invoiceItems.push(invoiceItem);
-                    vm.invoice.total = product.price + vm.invoice.total;
                 }
             } else {
-                vm.invoice.total = product.price - vm.invoice.total;
                 _.remove(vm.invoiceItems,{product_id:product.id});
             }
-            vm.invoice.total = vm.invoice.total*vm.invoice.discount*0.01;
+            setTotal();
+        }
+
+        function setTotal(){
+            _.each(vm.invoiceItems,function(item){
+                vm.invoice.total =  (item.price*item.quantity) + vm.invoice.total;
+            });
+            var discount = vm.invoice.discount ? vm.invoice.total*(vm.invoice.discount)*0.01 :0;
+            vm.invoice.total = vm.invoice.total-discount;
         }
 
         /**
